@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC224859284AC950000E5F52 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC224858284AC950000E5F52 /* Data.swift */; };
+		EC819988284B752F00BB7EC8 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC819987284B752F00BB7EC8 /* InfoViewController.swift */; };
 		ECDE86B32848935A004A0B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE86B22848935A004A0B1E /* AppDelegate.swift */; };
-		ECDE86B52848935A004A0B1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE86B42848935A004A0B1E /* SceneDelegate.swift */; };
-		ECDE86B72848935A004A0B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE86B62848935A004A0B1E /* ViewController.swift */; };
-		ECDE86BA2848935A004A0B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECDE86B82848935A004A0B1E /* Main.storyboard */; };
 		ECDE86BC2848935C004A0B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECDE86BB2848935C004A0B1E /* Assets.xcassets */; };
 		ECDE86BF2848935C004A0B1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECDE86BD2848935C004A0B1E /* LaunchScreen.storyboard */; };
+		ECDE86C928489E2F004A0B1E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE86C828489E2F004A0B1E /* ProfileViewController.swift */; };
+		ECDE86CB2848F6D3004A0B1E /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE86CA2848F6D3004A0B1E /* PostViewController.swift */; };
+		ECDE86D12848F7FD004A0B1E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE86D02848F7FD004A0B1E /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC224858284AC950000E5F52 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		EC819987284B752F00BB7EC8 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		ECDE86AF2848935A004A0B1E /* Navigation1_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation1_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECDE86B22848935A004A0B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ECDE86B42848935A004A0B1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ECDE86B62848935A004A0B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ECDE86B92848935A004A0B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ECDE86BB2848935C004A0B1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECDE86BE2848935C004A0B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ECDE86C02848935C004A0B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECDE86C828489E2F004A0B1E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		ECDE86CA2848F6D3004A0B1E /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		ECDE86D02848F7FD004A0B1E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				ECDE86B22848935A004A0B1E /* AppDelegate.swift */,
-				ECDE86B42848935A004A0B1E /* SceneDelegate.swift */,
-				ECDE86B62848935A004A0B1E /* ViewController.swift */,
-				ECDE86B82848935A004A0B1E /* Main.storyboard */,
+				ECDE86C828489E2F004A0B1E /* ProfileViewController.swift */,
+				ECDE86D02848F7FD004A0B1E /* FeedViewController.swift */,
+				ECDE86CA2848F6D3004A0B1E /* PostViewController.swift */,
+				EC819987284B752F00BB7EC8 /* InfoViewController.swift */,
 				ECDE86BB2848935C004A0B1E /* Assets.xcassets */,
 				ECDE86BD2848935C004A0B1E /* LaunchScreen.storyboard */,
 				ECDE86C02848935C004A0B1E /* Info.plist */,
+				EC224858284AC950000E5F52 /* Data.swift */,
 			);
 			path = Navigation1_3;
 			sourceTree = "<group>";
@@ -127,7 +133,6 @@
 			files = (
 				ECDE86BF2848935C004A0B1E /* LaunchScreen.storyboard in Resources */,
 				ECDE86BC2848935C004A0B1E /* Assets.xcassets in Resources */,
-				ECDE86BA2848935A004A0B1E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +143,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECDE86B72848935A004A0B1E /* ViewController.swift in Sources */,
+				ECDE86CB2848F6D3004A0B1E /* PostViewController.swift in Sources */,
+				EC224859284AC950000E5F52 /* Data.swift in Sources */,
 				ECDE86B32848935A004A0B1E /* AppDelegate.swift in Sources */,
-				ECDE86B52848935A004A0B1E /* SceneDelegate.swift in Sources */,
+				ECDE86D12848F7FD004A0B1E /* FeedViewController.swift in Sources */,
+				EC819988284B752F00BB7EC8 /* InfoViewController.swift in Sources */,
+				ECDE86C928489E2F004A0B1E /* ProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		ECDE86B82848935A004A0B1E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ECDE86B92848935A004A0B1E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		ECDE86BD2848935C004A0B1E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +292,6 @@
 				INFOPLIST_FILE = Navigation1_3/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -305,7 +304,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -321,7 +320,6 @@
 				INFOPLIST_FILE = Navigation1_3/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -334,7 +332,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
