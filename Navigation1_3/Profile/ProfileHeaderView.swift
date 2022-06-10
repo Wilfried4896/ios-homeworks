@@ -9,15 +9,21 @@ import UIKit
 
 final class ProfileHeaderView: UIView {
 
-    private lazy var imageProfile: UIImageView = {
+    private var statusText: String?
+
+    private lazy var avatarImageView: UIImageView = {
         let imageProfile = UIImageView()
         imageProfile.image = UIImage(named: "fleur")
         imageProfile.translatesAutoresizingMaskIntoConstraints = false
+        imageProfile.layer.cornerRadius = 60
+        imageProfile.layer.masksToBounds = true
+        imageProfile.layer.borderWidth = 3
+        imageProfile.layer.borderColor = UIColor.white.cgColor
 
         return imageProfile
     }()
 
-    private lazy var nameLabel: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let name = UILabel()
         name.text = "WIlfried Odi"
         name.textColor = .black
@@ -27,44 +33,38 @@ final class ProfileHeaderView: UIView {
         return name
     }()
 
-    private lazy var buttonShow: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         let show = UIButton()
-        show.setTitle("Show status", for: .normal)
+        show.setTitle("Set status", for: .normal)
         show.backgroundColor = .systemBlue
         show.translatesAutoresizingMaskIntoConstraints = false
         show.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        show.layer.cornerRadius = 4
+        show.layer.shadowRadius = 4
+        show.layer.borderColor = UIColor.black.cgColor
+        show.layer.shadowOpacity = 0.7
+        show.layer.shadowOffset = CGSize(width: 4, height: 4)
 
         return show
     }()
 
-
-    @objc func buttonPressed() {
-        if statusText == "" {
-            textLabel.text = "Waiting for something..."
-        }
-        else {
-            textLabel.text = statusText
-        }
-    }
-
-    private lazy var textFiel: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let textFiel = UITextField()
         textFiel.font = .systemFont(ofSize: 15, weight: .regular)
         textFiel.textColor = .black
         textFiel.backgroundColor = .white
         textFiel.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         textFiel.translatesAutoresizingMaskIntoConstraints = false
+        textFiel.layer.borderColor = UIColor.black.cgColor
+        textFiel.layer.borderWidth = 1
+        textFiel.layer.cornerRadius = 4
+
+        textFiel.delegate = self
 
         return textFiel
     }()
 
-    private var statusText = ""
-
-    @objc func statusTextChanged(_textField: UITextField) {
-        statusText = _textField.text!
-    }
-
-    private lazy var textLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let text = UILabel()
         text.text = "Waiting for something..."
         text.textColor = .gray
@@ -84,60 +84,59 @@ final class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        // Configuration imageProfile
-        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.height / 2
-        self.imageProfile.layer.masksToBounds = true
-        self.imageProfile.layer.borderWidth = 3
-        self.imageProfile.layer.borderColor = UIColor.white.cgColor
-
-        // configuration Button
-        self.buttonShow.layer.cornerRadius = 4
-        self.buttonShow.layer.shadowRadius = 4
-        self.buttonShow.layer.borderColor = UIColor.black.cgColor
-        self.buttonShow.layer.shadowOpacity = 0.7
-        self.buttonShow.layer.shadowOffset = CGSize(width: 4, height: 4)
-
-        // Configution textView
-        self.textFiel.layer.borderColor = UIColor.black.cgColor
-        self.textFiel.layer.borderWidth = 1
-        self.textFiel.layer.cornerRadius = 4
+    @objc func statusTextChanged(_textField: UITextField) {
+        statusText = _textField.text!
+    }
+    
+    @objc func buttonPressed() {
+        if statusText == "" {
+            statusLabel.text = "Waiting for something..."
+        }
+        else {
+            statusLabel.text = statusText
+        }
     }
 
 
     private func setUpView() {
-        self.addSubview(self.imageProfile)
-        self.addSubview(self.nameLabel)
-        self.addSubview(self.buttonShow)
-        self.addSubview(self.textLabel)
-        self.addSubview(self.textFiel)
+        self.addSubview(self.avatarImageView)
+        self.addSubview(self.fullNameLabel)
+        self.addSubview(self.setStatusButton)
+        self.addSubview(self.statusLabel)
+        self.addSubview(self.statusTextField)
 
 
         NSLayoutConstraint.activate([
-            self.imageProfile.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            self.imageProfile.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.imageProfile.heightAnchor.constraint(equalToConstant: 120),
-            self.imageProfile.widthAnchor.constraint(equalToConstant: 120),
+            self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            self.avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            self.avatarImageView.heightAnchor.constraint(equalToConstant: 120),
+            self.avatarImageView.widthAnchor.constraint(equalToConstant: 120),
 
-            self.nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            self.nameLabel.leadingAnchor.constraint(equalTo: self.imageProfile.trailingAnchor, constant: 13),
+            self.fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+            self.fullNameLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 13),
 
-            self.textLabel.bottomAnchor.constraint(equalTo: self.buttonShow.topAnchor, constant: -55),
-            self.textLabel.leadingAnchor.constraint(equalTo: self.imageProfile.trailingAnchor, constant: 13),
-            self.textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.statusLabel.bottomAnchor.constraint(equalTo: self.setStatusButton.topAnchor, constant: -55),
+            self.statusLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 13),
+            self.statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
 
-            self.textFiel.bottomAnchor.constraint(equalTo: self.buttonShow.topAnchor, constant: -10),
-            self.textFiel.leadingAnchor.constraint(equalTo: self.imageProfile.trailingAnchor, constant: 13),
-            self.textFiel.heightAnchor.constraint(equalToConstant: 40),
-            self.textFiel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.statusTextField.bottomAnchor.constraint(equalTo: self.setStatusButton.topAnchor, constant: -10),
+            self.statusTextField.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 13),
+            self.statusTextField.heightAnchor.constraint(equalToConstant: 40),
+            self.statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
 
-            self.buttonShow.topAnchor.constraint(equalTo: self.imageProfile.bottomAnchor, constant: 16),
-            self.buttonShow.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.buttonShow.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            self.buttonShow.heightAnchor.constraint(equalToConstant: 50),
+            self.setStatusButton.topAnchor.constraint(equalTo: self.avatarImageView.bottomAnchor, constant: 16),
+            self.setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            self.setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+
 
         ])
+    }
+}
+
+extension ProfileHeaderView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true 
     }
 }

@@ -12,22 +12,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-
-        // UITabBarController
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([feedNav, profilNav], animated: true)
-
-
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
-        self.window?.backgroundColor = .white
-
-        return true
-    }
-
     // UINavigationController
     let feedNav: UINavigationController = {
         let feedNav = UINavigationController(rootViewController: FeedViewController())
@@ -42,5 +26,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return profilNav
     }()
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        // UITabBarController
+        let tabBarController = UITabBarController()
+        tabBarController.setViewControllers([feedNav, profilNav], animated: true)
+
+
+        self.window?.rootViewController = tabBarController
+        self.window?.makeKeyAndVisible()
+        self.window?.backgroundColor = .systemGroupedBackground
+
+        return true
+    }
 }
 

@@ -10,24 +10,44 @@ import UIKit
 class FeedViewController: UIViewController {
     
     var post = Post(title: "Мой пост")
+    let stackView = UIStackView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Лента"
-        self.view.addSubview(button)
+        setUpStackView()
 
     }
 
-    lazy var button: UIButton = {
-        let button = UIButton(type: .system)
-        button.frame = CGRect(x: 100, y: 300, width: 200, height: 50)
-        button.center = self.view.center
-        button.setTitle("Перейти на пост", for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        return button
-    }()
+    private func setUpStackView() {
+        view.addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        addButtonStackView(.systemCyan, nameBtton: "Первая кнопка", event: .touchUpInside, action: #selector(buttonActionPush))
+        addButtonStackView(.systemIndigo, nameBtton: "Вторая кнопка", event: .touchUpInside, action: #selector(buttonActionPush))
+        stackView.translatesAutoresizingMaskIntoConstraints = false
 
-    @objc func buttonAction() {
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    private func addButtonStackView(_ colorButton: UIColor, nameBtton: String, event: UIControl.Event, action: Selector) {
+        let button = UIButton()
+        button.setTitle("\(nameBtton)", for: .normal)
+        button.backgroundColor = colorButton
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: action, for: event)
+        stackView.addArrangedSubview(button)
+
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: 40),
+            button.widthAnchor.constraint(equalToConstant: 180)
+        ])
+    }
+
+    @objc func buttonActionPush() {
         let postViewController = PostViewController()
         postViewController.titlePost = post.title
         navigationController?.pushViewController(postViewController, animated: true)
