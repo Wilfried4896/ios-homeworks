@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Новая кнопка", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemRed
+        button.backgroundColor = .systemGray
         button.layer.cornerRadius = 10
 
         return button
@@ -33,11 +33,10 @@ class ProfileViewController: UIViewController {
         setUpView()
         contraints()
     }
-
     func setUpView() {
         //self.navigationItem.title = "Профиль"
         self.view.backgroundColor = .systemGroupedBackground
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     func contraints() {
@@ -49,7 +48,9 @@ class ProfileViewController: UIViewController {
 
             self.newButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.newButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.newButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            self.newButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            self.newButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
+

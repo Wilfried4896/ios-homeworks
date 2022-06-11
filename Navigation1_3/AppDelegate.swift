@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     let profilNav: UINavigationController = {
-        let profilNav = UINavigationController(rootViewController: ProfileViewController())
+        let profilNav = UINavigationController(rootViewController: LogInViewController())
         profilNav.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
 
         return profilNav

@@ -97,7 +97,6 @@ final class ProfileHeaderView: UIView {
         }
     }
 
-
     private func setUpView() {
         self.addSubview(self.avatarImageView)
         self.addSubview(self.fullNameLabel)

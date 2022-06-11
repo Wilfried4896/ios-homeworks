@@ -16,7 +16,6 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Лента"
         setUpStackView()
-
     }
 
     private func setUpStackView() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EC224859284AC950000E5F52 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC224858284AC950000E5F52 /* Data.swift */; };
+		EC5E95AE2854C9980066D549 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5E95AD2854C9980066D549 /* LogInViewController.swift */; };
 		EC819988284B752F00BB7EC8 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC819987284B752F00BB7EC8 /* InfoViewController.swift */; };
 		EC819992284DC59300BB7EC8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC819991284DC59300BB7EC8 /* ProfileHeaderView.swift */; };
 		ECDE86B32848935A004A0B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE86B22848935A004A0B1E /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		EC224858284AC950000E5F52 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		EC5E95AD2854C9980066D549 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		EC819987284B752F00BB7EC8 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		EC819991284DC59300BB7EC8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		ECDE86AF2848935A004A0B1E /* Navigation1_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation1_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,11 +45,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC5E95AA2853EFAE0066D549 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EC224858284AC950000E5F52 /* Data.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		EC819990284DC49400BB7EC8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				ECDE86C828489E2F004A0B1E /* ProfileViewController.swift */,
 				EC819991284DC59300BB7EC8 /* ProfileHeaderView.swift */,
+				EC5E95AD2854C9980066D549 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -71,6 +82,7 @@
 		ECDE86B12848935A004A0B1E /* Navigation1_3 */ = {
 			isa = PBXGroup;
 			children = (
+				EC5E95AA2853EFAE0066D549 /* Data */,
 				EC819990284DC49400BB7EC8 /* Profile */,
 				ECDE86B22848935A004A0B1E /* AppDelegate.swift */,
 				ECDE86D02848F7FD004A0B1E /* FeedViewController.swift */,
@@ -79,7 +91,6 @@
 				ECDE86BB2848935C004A0B1E /* Assets.xcassets */,
 				ECDE86BD2848935C004A0B1E /* LaunchScreen.storyboard */,
 				ECDE86C02848935C004A0B1E /* Info.plist */,
-				EC224858284AC950000E5F52 /* Data.swift */,
 			);
 			path = Navigation1_3;
 			sourceTree = "<group>";
@@ -158,6 +169,7 @@
 				EC224859284AC950000E5F52 /* Data.swift in Sources */,
 				ECDE86B32848935A004A0B1E /* AppDelegate.swift in Sources */,
 				ECDE86D12848F7FD004A0B1E /* FeedViewController.swift in Sources */,
+				EC5E95AE2854C9980066D549 /* LogInViewController.swift in Sources */,
 				EC819992284DC59300BB7EC8 /* ProfileHeaderView.swift in Sources */,
 				EC819988284B752F00BB7EC8 /* InfoViewController.swift in Sources */,
 				ECDE86C928489E2F004A0B1E /* ProfileViewController.swift in Sources */,
