@@ -139,10 +139,11 @@ class LogInViewController: UIViewController {
             let keyboardHeight = keyboardRectangle.height
 
             let logInButtonPositionY = self.logInButton.frame.origin.y + self.logInButton.frame.height
-            let keyboardOriginY = self.view.frame.height - keyboardHeight
+            let keyboardOriginY = self.view.frame.height - self.view.safeAreaInsets.top - keyboardHeight
 
-            let yOffet = keyboardOriginY < logInButtonPositionY ? logInButtonPositionY - keyboardOriginY + 25 : 40
+            let yOffet = keyboardOriginY < logInButtonPositionY ? logInButtonPositionY - keyboardOriginY + 25 : 5
 
+            print("\(keyboardOriginY), \(logInButtonPositionY), \(yOffet)")
             self.scrollViewLogin.contentOffset = CGPoint(x: 0, y: yOffet)
         }
     }

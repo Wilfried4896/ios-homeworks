@@ -45,6 +45,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC317D6D2855BD5B00581DC5 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				ECDE86CA2848F6D3004A0B1E /* PostViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		EC317D6E2855BD9100581DC5 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				ECDE86D02848F7FD004A0B1E /* FeedViewController.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		EC5E95AA2853EFAE0066D549 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,11 +98,11 @@
 		ECDE86B12848935A004A0B1E /* Navigation1_3 */ = {
 			isa = PBXGroup;
 			children = (
+				EC317D6E2855BD9100581DC5 /* Feed */,
+				EC317D6D2855BD5B00581DC5 /* Post */,
 				EC5E95AA2853EFAE0066D549 /* Data */,
 				EC819990284DC49400BB7EC8 /* Profile */,
 				ECDE86B22848935A004A0B1E /* AppDelegate.swift */,
-				ECDE86D02848F7FD004A0B1E /* FeedViewController.swift */,
-				ECDE86CA2848F6D3004A0B1E /* PostViewController.swift */,
 				EC819987284B752F00BB7EC8 /* InfoViewController.swift */,
 				ECDE86BB2848935C004A0B1E /* Assets.xcassets */,
 				ECDE86BD2848935C004A0B1E /* LaunchScreen.storyboard */,
