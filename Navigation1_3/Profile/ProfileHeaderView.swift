@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
 
     private var statusText: String?
 
@@ -58,7 +58,6 @@ final class ProfileHeaderView: UIView {
         textFiel.layer.borderColor = UIColor.black.cgColor
         textFiel.layer.borderWidth = 1
         textFiel.layer.cornerRadius = 4
-
         textFiel.delegate = self
 
         return textFiel
@@ -74,9 +73,8 @@ final class ProfileHeaderView: UIView {
         return text
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setUpView()
     }
 
@@ -85,57 +83,51 @@ final class ProfileHeaderView: UIView {
     }
 
     @objc func statusTextChanged(_textField: UITextField) {
-        statusText = _textField.text!
+        statusText = _textField.text
     }
     
     @objc func buttonPressed() {
-        if statusText == "" {
-            statusLabel.text = "Waiting for something..."
+        guard let statusText = statusText else {
+            statusLabel.text = "Нет статуса"
+            return
         }
-        else {
-            statusLabel.text = statusText
-        }
+        statusLabel.text = statusText
     }
 
     private func setUpView() {
-        self.addSubview(self.avatarImageView)
-        self.addSubview(self.fullNameLabel)
-        self.addSubview(self.setStatusButton)
-        self.addSubview(self.statusLabel)
-        self.addSubview(self.statusTextField)
-
+        [avatarImageView, fullNameLabel, setStatusButton, statusLabel, statusTextField].forEach({
+            self.contentView.addSubview($0)
+        })
 
         NSLayoutConstraint.activate([
-            self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            self.avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            self.avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            self.avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             self.avatarImageView.heightAnchor.constraint(equalToConstant: 120),
             self.avatarImageView.widthAnchor.constraint(equalToConstant: 120),
 
-            self.fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+            self.fullNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27),
             self.fullNameLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 13),
 
             self.statusLabel.bottomAnchor.constraint(equalTo: self.setStatusButton.topAnchor, constant: -55),
             self.statusLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 13),
-            self.statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.statusLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             self.statusTextField.bottomAnchor.constraint(equalTo: self.setStatusButton.topAnchor, constant: -10),
             self.statusTextField.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 13),
             self.statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            self.statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.statusTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             self.setStatusButton.topAnchor.constraint(equalTo: self.avatarImageView.bottomAnchor, constant: 16),
-            self.setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            self.setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            self.setStatusButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            self.setStatusButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             self.setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-
-
         ])
     }
 }
-
 extension ProfileHeaderView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true 
     }
 }
+

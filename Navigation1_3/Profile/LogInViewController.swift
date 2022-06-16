@@ -22,14 +22,6 @@ class LogInViewController: UIViewController {
         return logo
     }()
 
-    private lazy var stackViewLogin: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-
     private lazy var emailLogin: UITextField = {
         let email = parametrTextField()
         email.tag = 0
@@ -51,7 +43,7 @@ class LogInViewController: UIViewController {
         logIn.backgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel")!)
         logIn.setTitle("Log In", for: .normal)
         logIn.layer.cornerRadius = 10
-        
+
         logIn.translatesAutoresizingMaskIntoConstraints = false
         logIn.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
         return logIn
@@ -60,21 +52,21 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-
         self.view.addSubview(scrollViewLogin)
-        self.scrollViewLogin.addSubview(logoVk)
-        self.scrollViewLogin.addSubview(logInButton)
-        self.scrollViewLogin.addSubview(stackViewLogin)
-        self.stackViewLogin.addArrangedSubview(emailLogin)
-        self.stackViewLogin.addArrangedSubview(passwordLogin)
+
+        [logoVk, emailLogin, passwordLogin, logInButton].forEach({
+            self.scrollViewLogin.addSubview($0)
+        })
+
         self.navigationController?.navigationBar.isHidden = true
 
-        let scrollViewLoginConstraints = self.scrollViewLoginConstraints()
+        let scrollViewLoginConstraint = self.scrollViewLoginConstraint()
         let logoVkConstraints = self.logoVkConstraints()
-        let stackViewLoginConstraints = self.stackViewLoginConstraints()
+        let emailLoginConstraints = self.emailLoginConstraints()
+        let passwordLoginConstraints = self.passwordLoginConstraints()
         let logInButtonConstraints = self.logInButtonConstraints()
         NSLayoutConstraint.activate(
-            scrollViewLoginConstraints + logoVkConstraints + stackViewLoginConstraints + logInButtonConstraints
+            scrollViewLoginConstraint + logoVkConstraints + emailLoginConstraints + passwordLoginConstraints + logInButtonConstraints
         )
     }
 
@@ -101,11 +93,12 @@ class LogInViewController: UIViewController {
         return textField
     }
 
-    private func scrollViewLoginConstraints() -> [NSLayoutConstraint] {
+    private func scrollViewLoginConstraint() -> [NSLayoutConstraint] {
         let topAnchor = self.scrollViewLogin.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
         let leadingAnchor = self.scrollViewLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         let trailingAnchor = self.scrollViewLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        let bottomAnchor = self.scrollViewLogin.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        let bottomAnchor = self.scrollViewLogin.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+
         return [topAnchor, leadingAnchor, trailingAnchor, bottomAnchor]
     }
 
@@ -117,20 +110,31 @@ class LogInViewController: UIViewController {
         return [topAnchor, centerXAnchor, heightAnchor, widthAnchor]
     }
 
-    private func stackViewLoginConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.stackViewLogin.topAnchor.constraint(equalTo: self.logoVk.bottomAnchor, constant: 120)
-        let leadingAnchor = self.stackViewLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        let trailingAnchor = self.stackViewLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let heightAnchor = self.stackViewLogin.heightAnchor.constraint(equalToConstant: 100)
-        return [topAnchor, leadingAnchor, trailingAnchor, heightAnchor]
+    private func emailLoginConstraints() -> [NSLayoutConstraint] {
+        let topAnchor = self.emailLogin.topAnchor.constraint(equalTo: self.logoVk.bottomAnchor, constant: 120)
+        let leadingAnchor = self.emailLogin.leadingAnchor.constraint(equalTo: self.scrollViewLogin.leadingAnchor, constant: 16)
+        let trailingAnchor = self.emailLogin.trailingAnchor.constraint(equalTo: self.scrollViewLogin.trailingAnchor, constant: -16)
+        let heightAnchor = self.emailLogin.heightAnchor.constraint(equalToConstant: 50)
+        let widthAnchor = self.emailLogin.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -32)
+        return [topAnchor, leadingAnchor, trailingAnchor, heightAnchor, widthAnchor]
+    }
+
+    private func passwordLoginConstraints() -> [NSLayoutConstraint] {
+        let topAnchor = self.passwordLogin.topAnchor.constraint(equalTo: self.emailLogin.bottomAnchor)
+        let leadingAnchor = self.passwordLogin.leadingAnchor.constraint(equalTo: self.scrollViewLogin.leadingAnchor, constant: 16)
+        let trailingAnchor = self.passwordLogin.trailingAnchor.constraint(equalTo: self.scrollViewLogin.trailingAnchor, constant: -16)
+        let heightAnchor = self.passwordLogin.heightAnchor.constraint(equalToConstant: 50)
+        let widthAnchor = self.emailLogin.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -32)
+        return [topAnchor, heightAnchor, widthAnchor, leadingAnchor, trailingAnchor]
     }
 
     private func logInButtonConstraints() -> [NSLayoutConstraint] {
         let heightAnchor = self.logInButton.heightAnchor.constraint(equalToConstant: 50)
-        let leadingAnchor = self.logInButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        let trailingAnchor = self.logInButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let topAnchor = self.logInButton.topAnchor.constraint(equalTo: self.stackViewLogin.bottomAnchor, constant: 16)
-        return [heightAnchor, leadingAnchor, trailingAnchor, topAnchor]
+        let leadingAnchor = self.logInButton.leadingAnchor.constraint(equalTo: self.scrollViewLogin.leadingAnchor, constant: 16)
+        let trailingAnchor = self.logInButton.trailingAnchor.constraint(equalTo: self.scrollViewLogin.trailingAnchor, constant: -16)
+        let topAnchor = self.logInButton.topAnchor.constraint(equalTo: self.passwordLogin.bottomAnchor, constant: 16)
+        let widthAnchor = self.emailLogin.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -32)
+        return [heightAnchor, leadingAnchor, trailingAnchor, topAnchor, widthAnchor]
     }
 
     @objc func didShowKeyboard(_ notification: Notification) {
@@ -138,10 +142,10 @@ class LogInViewController: UIViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
 
-            let logInButtonPositionY = self.logInButton.frame.origin.y + self.logInButton.frame.height
-            let keyboardOriginY = self.view.frame.height - self.view.safeAreaInsets.top - keyboardHeight
+            let logInButtonPositionY = self.logInButton.frame.origin.y + self.logInButton.frame.height + self.view.safeAreaInsets.top
+            let keyboardOriginY = self.view.frame.height - keyboardHeight
 
-            let yOffet = keyboardOriginY < logInButtonPositionY ? logInButtonPositionY - keyboardOriginY + 25 : 5
+            let yOffet = keyboardOriginY < logInButtonPositionY ? logInButtonPositionY - keyboardOriginY + 15 : 0
 
             print("\(keyboardOriginY), \(logInButtonPositionY), \(yOffet)")
             self.scrollViewLogin.contentOffset = CGPoint(x: 0, y: yOffet)
