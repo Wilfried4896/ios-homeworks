@@ -7,6 +7,14 @@
 
 import Foundation
 
-struct Post {
+struct PostFeed {
     var title: String
+}
+
+struct Article {
+    var author: String
+    var image: String
+    var description: String
+    var likes: Int
+    var views: Int
 }

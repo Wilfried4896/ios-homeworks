@@ -15,14 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // UINavigationController
     let feedNav: UINavigationController = {
         let feedNav = UINavigationController(rootViewController: FeedViewController())
-        feedNav.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
+        feedNav.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "house.fill"), tag: 0)
 
         return feedNav
     }()
 
     let profilNav: UINavigationController = {
         let profilNav = UINavigationController(rootViewController: LogInViewController())
-        profilNav.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
+        profilNav.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
 
         return profilNav
     }()
@@ -34,7 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UITabBarController
         let tabBarController = UITabBarController()
         tabBarController.setViewControllers([feedNav, profilNav], animated: true)
+        
+        let navigationBar = UINavigationBarAppearance()
+        navigationBar.configureWithOpaqueBackground()
+        navigationBar.backgroundColor = .systemGroupedBackground
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBar
 
+        let tabBar = UITabBarAppearance()
+        tabBar.configureWithOpaqueBackground()
+        tabBar.backgroundColor = .white
+        UITabBar.appearance().scrollEdgeAppearance = tabBar
 
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
