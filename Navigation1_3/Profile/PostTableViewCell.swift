@@ -74,50 +74,36 @@ class PostTableViewCell: UITableViewCell {
 
     private func setUpView() {
         [likesLabel, viewsLabel].forEach({
-            self.stackViewLikesViews.addArrangedSubview($0)
+            stackViewLikesViews.addArrangedSubview($0)
         })
 
         [authorLabel, imageArticle, descriptionLabel, stackViewLikesViews].forEach({
-            self.contentView.addSubview($0)
+            contentView.addSubview($0)
         })
 
-        let authorLabelContraints = authorLabelContraints()
-        let imageArticleContraints = imageArticleContraints()
-        let descriptionLabelContraints = descriptionLabelContraints()
-        let stackViewLikesViewsContraints = stackViewLikesViewsContraints()
-        NSLayoutConstraint.activate(
-            authorLabelContraints + imageArticleContraints + descriptionLabelContraints + stackViewLikesViewsContraints
-        )
-    }
+        NSLayoutConstraint.activate([
+            // authorLabelContraints
+            authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-    private func authorLabelContraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
-        let leadingAnchor = self.authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
-        let trailingAnchor = self.authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        return [topAnchor, leadingAnchor, trailingAnchor]
-    }
+            // imageArticleContraints
+            imageArticle.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 10),
+            imageArticle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageArticle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageArticle.heightAnchor.constraint(equalToConstant: contentView.frame.width),
 
-    private func imageArticleContraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.imageArticle.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 10)
-        let leadingAnchor = self.imageArticle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
-        let trailingAnchor = self.imageArticle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        let heightAnchor = self.imageArticle.heightAnchor.constraint(equalToConstant: contentView.frame.width)
-        return [leadingAnchor, trailingAnchor, topAnchor, heightAnchor, ]
-    }
+            // descriptionLabelContraints
+            descriptionLabel.topAnchor.constraint(equalTo: imageArticle.bottomAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
-    private func descriptionLabelContraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.descriptionLabel.topAnchor.constraint(equalTo: imageArticle.bottomAnchor, constant: 10)
-        let leadingAnchor = self.descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
-        let trailingAnchor = self.descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        return [topAnchor, leadingAnchor, trailingAnchor, ]
-    }
-
-    private func stackViewLikesViewsContraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.stackViewLikesViews.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10)
-        let leadingAnchor = self.stackViewLikesViews.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
-        let trailingAnchor = self.stackViewLikesViews.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        let bottomAnchor = self.stackViewLikesViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        return [topAnchor, leadingAnchor, trailingAnchor, bottomAnchor]
+            // stackViewLikesViewsContraints
+            stackViewLikesViews.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            stackViewLikesViews.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            stackViewLikesViews.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackViewLikesViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
     }
 
     private func likesViewsDescrption() -> UILabel {
@@ -129,7 +115,7 @@ class PostTableViewCell: UITableViewCell {
 
     func setUp(with article: Article) {
         self.authorLabel.text = article.author
-        self.imageArticle.image = UIImage(named: article.image)
+        self.imageArticle.image = UIImage(named: "\(article.image ?? "placeholder")")
         self.descriptionLabel.text = article.description
         self.likesLabel.text = String("Likes: \(article.likes)")
         self.viewsLabel.text = String("Views: \(article.views)")

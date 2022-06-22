@@ -12,9 +12,10 @@ class ProfileViewController: UIViewController {
     private lazy var profileTableHederView: UITableView = {
         let profileTable = UITableView(frame: .zero, style: .grouped)
         profileTable.rowHeight = UITableView.automaticDimension
-        profileTable.estimatedRowHeight = 40
+        profileTable.estimatedRowHeight = 10
         profileTable.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "Profile")
         profileTable.register(PostTableViewCell.self, forCellReuseIdentifier: "PostCell")
+        profileTable.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotoCell")
         profileTable.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         profileTable.translatesAutoresizingMaskIntoConstraints = false
         profileTable.delegate = self
@@ -33,51 +34,70 @@ class ProfileViewController: UIViewController {
         self.view.backgroundColor = .systemGroupedBackground
         self.view.addSubview(profileTableHederView)
 
-        let profileTableHederViewContraints = profileTableHederViewContraints()
-        NSLayoutConstraint.activate(
-            profileTableHederViewContraints
-        )
-    }
+        NSLayoutConstraint.activate([
+            // profileTableHederViewContraints
+            profileTableHederView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileTableHederView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileTableHederView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileTableHederView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
 
-
-    private func profileTableHederViewContraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.profileTableHederView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        let leadingAnchor = self.profileTableHederView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        let trailingAnchor = self.profileTableHederView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        let bottomAnchor = self.profileTableHederView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        return [topAnchor, leadingAnchor, trailingAnchor, bottomAnchor]
     }
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return article.count
+        switch section {
+            case 0:
+                return 1
+            case 1:
+                return article.count
+            default:
+                return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+            case 0:
+                let cellPhoto = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) 
+                return cellPhoto
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostTableViewCell else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-            return cell
+            case 1:
+                guard let cellArticle = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostTableViewCell else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+                    return cell
+                }
+                let article = self.article[indexPath.row]
+                cellArticle.setUp(with: article)
+                return cellArticle
+
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+                return cell
         }
-        let article = self.article[indexPath.row]
-        cell.setUp(with: article)
-        return cell
     }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            guard  let profileHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Profile") as? ProfileHeaderView else { return nil }
-            return profileHeader
+        switch section {
+            case 0:
+                guard  let profileHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Profile") as? ProfileHeaderView else { return nil }
+                tableView.backgroundColor = .systemGroupedBackground
+                return profileHeader
+
+            default:
+                return nil
         }
-        return nil
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        220
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.section == 0 else { return }
+        let photoView = PhotosViewController()
+        navigationController?.pushViewController(photoView, animated: true)
     }
 }
