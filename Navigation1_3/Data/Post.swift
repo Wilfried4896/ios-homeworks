@@ -47,3 +47,43 @@ struct Post {
         )
      ]
 }
+
+struct Photo {
+    static let shared = Photo()
+    private init() {}
+
+    let imageData: [PhotoGameOfThrone] = [
+        PhotoGameOfThrone(
+            image: "2"
+        ),
+
+        PhotoGameOfThrone(
+            image: "3"
+        ),
+
+        PhotoGameOfThrone(
+            image: "4"
+        ),
+
+        PhotoGameOfThrone(
+            image: "5"
+        ),
+
+        PhotoGameOfThrone(
+            image: "Vladimir-Poutine"
+        ),
+
+        PhotoGameOfThrone(
+            image: "Kali-Linux"
+        ),
+
+        PhotoGameOfThrone(
+            image: "basilique"
+        ),
+
+        PhotoGameOfThrone(
+            image: "Steve-Jobs"
+        ),
+
+    ]
+}

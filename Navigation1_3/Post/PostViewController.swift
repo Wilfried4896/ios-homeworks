@@ -11,6 +11,12 @@ class PostViewController: UIViewController {
 
     var titlePost: String?
 
+    lazy var buttonBarItem: UIBarButtonItem = {
+        let buttonBarItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(moreInformation))
+
+        return buttonBarItem
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = buttonBarItem
@@ -21,12 +27,6 @@ class PostViewController: UIViewController {
         self.view.backgroundColor = UIColor.systemGray5
         self.navigationItem.title = titlePost
     }
-
-    lazy var buttonBarItem: UIBarButtonItem = {
-        let buttonBarItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(moreInformation))
-
-        return buttonBarItem
-    }()
 
     @objc func moreInformation() {
         let infoViewController = UINavigationController(rootViewController: InfoViewController())

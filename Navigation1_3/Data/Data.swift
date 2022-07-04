@@ -13,8 +13,12 @@ struct PostFeed {
 
 struct Article {
     var author: String
-    var image: String
+    var image: String?
     var description: String
     var likes: Int
     var views: Int
+}
+
+struct PhotoGameOfThrone {
+    var image: String?
 }

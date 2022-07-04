@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
-        self.window?.backgroundColor = .systemGroupedBackground
+        self.window?.backgroundColor = .systemBackground
 
         return true
     }
